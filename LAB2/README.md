@@ -1,9 +1,9 @@
 #
 # Profesor: Edwin Nelson Montya, emontoya@eafit.edu.co
 
-# EL OBJETIVO DE ESTA DOCUMENTACÍON ES BRINDAR UNA GUÍA Y ENTENIDMIENTO PARA PODER EJECUTAR EL LANORATORIO 2 DE LA MATERIA TÓPICOS EN TELÉMATICA
+# EL OBJETIVO DE ESTA DOCUMENTACÍON ES BRINDAR UNA GUÍA Y ENTENIDMIENTO PARA PODER EJECUTAR EL LABORATORIO 2 DE LA MATERIA TÓPICOS EN TELÉMATICA
 
-# Laboratorio1: Web Server minimalista utilizando Python Sockets montado en una máquina virtual de AWS.
+# Laboratorio2: Implementación Servidor RabbitMQ enviando datos de temperatura mediante un cliente a un servidor mediante RabbitMQ.
 #
 # 1. breve descripción de la actividad
 #
