@@ -13,7 +13,8 @@ Se desarrolló un cliente de manera local que envía mensajes a un servidor util
 
 # 2. Descripción del ambiente de desarrollo y técnico: lenguaje de programación, librerias, paquetes, etc, con sus numeros de versiones.
 ## 2.1 Prerequisitos de software
-1. Desde Visual Studio 2022 instalar extensión de RabbitMQ. Es indispensable.
+1. Descargar e instalar RabbitMQ: https://www.rabbitmq.com/download.html
+2. Desde Visual Studio 2022 instalar extensión de RabbitMQ. Es indispensable.
 
 ## 2.2 Probando programa
 1. Abrir dentro de la carpeta ConsumidorDEMO, el archivo ConsumidorDEMO.sln
@@ -26,9 +27,11 @@ Se desarrolló un cliente de manera local que envía mensajes a un servidor util
 # 3. Resultados
   ![imagen](https://user-images.githubusercontent.com/46933022/187586745-6595ca18-2c8c-4cd1-b2be-425096c0f220.png)
   ![imagen](https://user-images.githubusercontent.com/46933022/187586910-487c24fa-847e-45eb-95a4-1a56a7bcd4e9.png)
-
-
-# 4. Referencias
+  
+ # 4. Adicionales
+Se agregaron soluciones para enviar datos através de arduino, envía datos pero el consumidor no los recibe. Implementación incompleta.
+  
+# 5. Referencias
   https://www.youtube.com/watch?v=4Qdh6D5JH_U
   
 #### versión README.md -> 1.0 (2022-agosto)
