@@ -3,7 +3,7 @@
 
 # EL OBJETIVO DE ESTA DOCUMENTACÍON ES BRINDAR UNA GUÍA Y ENTENIDMIENTO PARA PODER EJECUTAR EL LABORATORIO 2 DE LA MATERIA TÓPICOS EN TELÉMATICA
 
-# Laboratorio2: Implementación Servidor RabbitMQ enviando datos de temperatura mediante un cliente a un servidor mediante RabbitMQ.
+# Laboratorio2: Implementación Servidor RabbitMQ. Enviando datos de temperatura y humedad mediante un cliente a un servidor mediante RabbitMQ.
 #
 # 1. breve descripción de la actividad
 #
