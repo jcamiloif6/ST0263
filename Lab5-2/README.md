@@ -1,81 +1,51 @@
-## Estudiante: Samuel Meneses Diaz, smenesesd@eafit.edu.co
+## Estudiante: Juan Camilo Iguaran, jciguaranf@eafit.edu.co
 ## Materia: Topicos especiales de telematica
 ## Profesor: Edwin Nelson Montoya Munera, emontoya@eafit.edu.co 
 #
 # Lab 5-2-HDFS
 # 1. Breve descripción de la actividad
-En este laboratorio se afianzaron y se pusieron a prueba  los conocimientos en la gestion de archivos en HDFS y S3 para big data. 
+GESTIÓN DE ARCHIVOS EN HDFS Y S3 PARA BIG DATA
 
-__Conexion al cluster:__
-![1](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-2/img/1.png)   
-Nos conectamos al cluster para empezar con este lab 5-2
+__Conexion al cluster:__ Nos conectamos al cluster desde Putty
+![Captura11](https://user-images.githubusercontent.com/46933022/199150305-de472656-718b-4c02-8454-cebd4fece89c.PNG)
 
-__listar archivos:__
-![2](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-2/img/2.png)   
-HDFS dfs es solo para hacer la lista de archivos HDFS
+__listamos los archivos:__
+!![imagen](https://user-images.githubusercontent.com/46933022/199150650-f827a755-fe6f-4708-947c-178e4d9547f8.png)
 
-__Creacion de datasets:__
-![3](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-2/img/3%20creacion_datasets.png)   
-Se hace la creacion de la carpeta de datasets dentro del user hadoop
+__Creamos el datasets con los archivos:__
+![Captura12](https://user-images.githubusercontent.com/46933022/199150799-74cf25c5-58d5-4618-b40e-0f20684c9fb2.PNG)
 
-__Copia archivos locales hacia HDFS:__
-![4](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-2/img/4.png)   
-Se hace la copia de los archivos compilados por medio de SSH/SCP al servidor gateway por la VPN 
+__Copia archivo gutenberg en servidor local (amazon s3):__
+![Captura14](https://user-images.githubusercontent.com/46933022/199151123-8a5b3d36-b420-4ab5-a919-b1316237b6df.PNG)
 
-``` hdfs dfs -put /datasets/gutenberg/gutenberg-small.zip /user//datasets/ ```
 
-__Verificacion de la copia de los archivos locales en el hadoop:__
-![5](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-2/img/5.png)
+__ls a gutenberg-small:__
+![Captura13](https://user-images.githubusercontent.com/46933022/199151321-0485d115-5969-4135-9bea-a7abc6c91f74.PNG)
 
-__Archivos en Amazon s3:__
-![6](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-2/img/6.png)   
-```hadoop distcp``` Es una herramienta para copiar datos del inter-cluster.
 
-__ls al gutenberg-small:__
-![7](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-2/img/7.png)
+# Uso de otros comandos:
 
-__Copiar archivos de HDFS hacia el servidor(gateway):__
-![8](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-2/img/8.png)
+```
+hdfs dfs -du: ver uso de disco en bytes
+hdfs dfs -rm datasets/onu/hdi-data.csv: eliminar archivos
+```
+![Captura15](https://user-images.githubusercontent.com/46933022/199151490-d39d0235-59f9-417f-9ba8-ce751ef983d2.PNG)
 
-__Otros comandos para traer archivos:__
-![9](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-2/img/9.png)
+```
+hdfs dfs -cat datasets/otros/dataempleados.txt: mostrar contenido de archivo
+```
+![Captura16](https://user-images.githubusercontent.com/46933022/199152101-40b85a16-6237-4492-ac93-6150da359ab1.PNG)
 
-__Otros comandos:__
-![10](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-2/img/10.png)   
-DU: uso de disco en bytes
 
-![11](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-2/img/11.png)   
-MV: mover archivos
+# Gestion de archivos VIA HUE en amazon EMR
+![Captura2](https://user-images.githubusercontent.com/46933022/199152307-0935e8be-5315-402a-ac7d-d8a892e5d5e1.PNG)
 
-![12](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-2/img/12.png)   
-CP: Copiar archivos
+![imagen](https://user-images.githubusercontent.com/46933022/199152396-489b528a-5752-4661-a490-da415fa78c11.png)
 
-![13](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-2/img/13.png)
-RM: Borrar archivos
 
-![14](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-2/img/14.png)   
-CAT: Mostrar contenido del archivo
+![imagen](https://user-images.githubusercontent.com/46933022/199152495-e8ca715c-5fc0-45c7-9738-8aa1e72194f2.png)
 
-![15](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-2/img/15.png)   
-CHMOD: Cambiar los permisos del archivo
 
-![16](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-2/img/16.png)   
-CHOWN: Cambiar el dueño del archivo
+![imagen](https://user-images.githubusercontent.com/46933022/199152624-91753c49-e43c-4ac4-af6b-22b0b3cc327f.png)
 
-![17](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-2/img/17.png)
-CHGRP: Cambiar el grupo del archivo
 
-__Gestion de archivos VIA HUE en amazon EMR:__
-![18](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-2/img/18.png)
-
-![19](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-2/img/19.png)
-
-![20](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-2/img/20.png)
-
-![21](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-2/img/21.png)
-
-![22](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-2/img/22.png)
-
-![23](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-2/img/23.png)
-
-![24](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-2/img/24.png)
