@@ -1,60 +1,73 @@
-## Estudiante: Samuel Meneses Diaz, smenesesd@eafit.edu.co
+## Estudiante: Juan Camilo Iguarán, jciguaranf@eafit.edu.co
 ## Materia: Topicos especiales de telematica
 ## Profesor: Edwin Nelson Montoya Munera, emontoya@eafit.edu.co 
 #
 # Lab 5-1-Aws-EMR
 # 
 # Creacion de cluster
-__Primer paso para la creacion del closter:__   
-   ![Ccloster1](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-1/img/Cluster/Ccloster1.png)
+A continuación se detallará paso a paso la creación del cluster emr y la elaboración del lab5-1 como tal. Este laboratorio es realizado en aws y como prerrquisito es necesario tener un par de claves ppk para poder realizar este lab
 
-__Segundo paso:__      
-   ![version](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-1/img/Cluster/version.png)   
-Se escoge la version EMR en la que se va a basar el cluster
+__1. Click en crear cluster y una vez dentro, click en opciones avanzadas__:    
+   ![imagen](https://user-images.githubusercontent.com/46933022/199122606-1dd26263-ac8f-4156-931b-2379739a7b95.png)
 
-__Tercer paso:__   
-   ![ComponentesSeleccionados](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-1/img/Cluster/ComponentesSeleccionados.png)   
-Se escogen los componentes con los que vamos a trabajar
+__2. Seleccionar emr-6.3.1 y los componentes a utilizar:__      
+   ![imagen](https://user-images.githubusercontent.com/46933022/199123143-4a60fd4d-3b2a-4e68-a0aa-46ed039eba68.png)
 
-__Cuarto paso:__      
-   ![IntegracionDelCatalogoGlue](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-1/img/Cluster/integracionDelCatalogoGlue.png)   
-Se escogen las dos opciones que dan para hacer la integracion del catalogo Glue
+__3. AWS Glue Data Catalog settings:__   
+   ![imagen](https://user-images.githubusercontent.com/46933022/199123402-a44cb7a0-87d7-4554-8755-2b42dc53569e.png)
 
-__Quinto paso:__   
-   ![ConfigBucket](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-1/img/Cluster/configBucket.png)   
-Se hace la configuracion del bucket basandonos en el documento de AWS sobre la configuracion de persistencia para Notebooks en amazon S3
+__4. Edit software settings:__ Para esto nos vamos al siguiente link https://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-jupyterhub-s3.html y copiamos la configuración que allí aparece y la pegamos en nuestro cluster y le damos next
+   ![imagen](https://user-images.githubusercontent.com/46933022/199123860-a579ef2c-0104-411d-8f09-0b3f760109a0.png)
+   
+   Nota: se debe cambiar el nombre del bucket
 
-__Sexto paso:__   
-   ![CambiodeHW](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-1/img/Cluster/cambioDeHW.png)   
-Se hace el cambio de HW para el M4.xlarge, ya que el que viene por defecto no deja correrlo por ser AWS academy
+__5. Se configuran el tamaño de las instancias en m4.xlarge y en el espacio de opción de compra se señala de tipo Spot:__   
+   ![imagen](https://user-images.githubusercontent.com/46933022/199124368-d7ddbf32-3c82-4c1f-b09b-f47c3dac5e16.png)
 
-__Septimo paso:__   
-   ![terminygb](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-1/img/Cluster/terminygb.png)   
-Se configura la terminacion automatica del cluster y se aumenta la cantidad de gb
 
-__Octavo paso:__   
-   ![nombreCluster](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-1/img/Cluster/nombreCluster.png)   
-Se hace la eleccion del cluster name
+   ![imagen](https://user-images.githubusercontent.com/46933022/199124271-cb73e8ce-70e7-4102-bc73-ca2e3502310a.png)
+   
+   No tenemos el nodo de tipo tarea por eso no lo tocamos
 
-__Noveno paso:__   
-   ![claveEC2](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-1/img/Cluster/claveEC2.png)   
-Se hace la configuracion de la clave EC2, en este caso puse la que habia hecho para el trabajo en redis
 
-__Decimo paso:__   
-   ![awsCluster](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-1/img/Cluster/awsCluster.png)   
+__6. Habilitar terminación automática y aumentar almacenamiento en 20Gb y le damos next:__   
+   ![imagen](https://user-images.githubusercontent.com/46933022/199124731-8fed762b-bdf4-40e1-85e9-278e70b385f8.png)
+
+
+__7. Ponemos nombre al cluster y le damos next:__   
+   ![imagen](https://user-images.githubusercontent.com/46933022/199124963-48642278-5f9f-4ca6-aa41-6ba17174cec0.png)
+
+
+__8. Elegimos nuestro par de claves creados previamente como prerequisito y le doy en crear cluster:__   
+   ![imagen](https://user-images.githubusercontent.com/46933022/199125129-683f92c4-81e5-406a-89fb-1b72487253d3.png)
+
+
+__9. Si todo salió bien, se debería ver de la siguiente manera la creación del cluster:__   
+   ![imagen](https://user-images.githubusercontent.com/46933022/199125377-a9d5c361-721a-4a6a-892b-31108c4ed192.png)  
 Se verifica en la pestaña de cluster que su cluster este en proceso de creacion, esto puede llegar a durar 25 min o mas. 
 
-__Verificacion del lanzamiento del cluster:__   
-   ![clusterReady](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-1/img/Cluster/clusterReady.png)   
-   Se verifica la creacion exitosa de nuestro cluster
+Así se debe ver una vez el cluster haya terminado de configurarse
+![imagen](https://user-images.githubusercontent.com/46933022/199127214-34e45d56-9654-4d4f-adff-e4d51d068f17.png)
+
 
 # Creacion de bucket
-__Pagina Principal de S3 para la creacion de nuestro bucket:__   
-   ![1](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-1/img/Bucket/1.png)
+__Pagina Principal de S3 para la creacion de nuestro bucket y le damos crear:__   
+   ![imagen](https://user-images.githubusercontent.com/46933022/199127627-63f5deb6-68ce-4e30-abb1-fce05a3121e2.png)
 
-__Creacion del bucket:__   
-  ![2](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-1/img/Bucket/2.png)   
-  Se hace la creacion del bucket simplemente cambiandole el nombre como lo habiamos puesto en la persistencia para el notebook
+__Creacion del bucket:__ Le ponemos el nombre que le pusimos a la persistencia del notebook cuando estabamos creando el cluster y le damos crear   
+  ![imagen](https://user-images.githubusercontent.com/46933022/199127868-0f1d4158-fbbf-46d9-9daa-1e04c7beb6f7.png)
+  
+__Ingresar al Master con SSH__: Para ingresar al master con ssh simplemente ingresamos a la información del cluster y le damos click donde dice DNS público principal y seguimos las instrucciones
+   ![imagen](https://user-images.githubusercontent.com/46933022/199128321-1f09c8d2-7c73-48e4-bb37-74325354c30e.png)
+
+# Configuración de los puertos
+  __Para configurar los puertos nos vamos a la opción bloquear acceso público, nos vamos a editar y añadimos los siguienetes puertos__:
+  ![imagen](https://user-images.githubusercontent.com/46933022/199131203-fc37b99b-16c5-4e35-9786-79b61171d076.png)
+
+# Configuración de grupos de seguridad
+  __1__: Nos vamos al cluster y le damos click al enlace que aparece en grupos de seguridad para principal
+  ![imagen](https://user-images.githubusercontent.com/46933022/199131412-13f7522a-4bd9-4d7c-9043-1bc7839bfeba.png)
+
 
 __DNS para la conexion del master:__   
   ![3](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-1/img/Bucket/4.png)   
