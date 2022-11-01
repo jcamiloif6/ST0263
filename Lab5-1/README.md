@@ -64,51 +64,52 @@ __Ingresar al Master con SSH__: Para ingresar al master con ssh simplemente ingr
   __Para configurar los puertos nos vamos a la opción bloquear acceso público, nos vamos a editar y añadimos los siguienetes puertos__:
   ![imagen](https://user-images.githubusercontent.com/46933022/199131203-fc37b99b-16c5-4e35-9786-79b61171d076.png)
 
-# Configuración de grupos de seguridad
-  __1__: Nos vamos al cluster y le damos click al enlace que aparece en grupos de seguridad para principal
-  ![imagen](https://user-images.githubusercontent.com/46933022/199131412-13f7522a-4bd9-4d7c-9043-1bc7839bfeba.png)
 
 
-__DNS para la conexion del master:__   
-  ![3](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-1/img/Bucket/4.png)   
+__DNS para la conexion del master:__     
   ![4](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-1/img/Bucket/5.png)   
-  - Comprobe la conexion al master desde dos maquinas diferentes, desde un S.O apple y desde un windows 
+  - Comprobe la conexion al master
   - Nos metemos a el cluster creado y nos conectamos al master medio SSH
 
 __Comandos para verificar el sistema de almacenamiento HDFS:__   
   ![ComandosparasistdeaAlma](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-1/img/Cluster/ComandosparasistdeAlma.png) 
+  
+# Configuración de grupos de seguridad
+  __1__: Nos vamos al cluster y le damos click al enlace que aparece en grupos de seguridad para principal
+  ![imagen](https://user-images.githubusercontent.com/46933022/199131412-13f7522a-4bd9-4d7c-9043-1bc7839bfeba.png)
+  
+  __2__: Habilitamos los puertos
+   ![Captura1](https://user-images.githubusercontent.com/46933022/199135870-2cd270df-fb40-48e0-801e-d0a9b47629d3.PNG)
 
-__Ingreso a HUE:__   
-  ![configdeHUE](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-1/img/Cluster/configdeHUE.png)   
-  Aqui podemos ver que ya entramos al main de HUE y ya se habilitaron los puertos necesarios para la elaboracion de este lab5
+# Ingreso a HUE
+  __Creamos usuario hadoop__
+  
+   ![Captura2](https://user-images.githubusercontent.com/46933022/199135986-d2531ec6-5ad9-4c2a-a846-24290072dd3d.PNG)
+   
+  __Base de datos por defecto__
+  
+  ![Captura3](https://user-images.githubusercontent.com/46933022/199136119-9c7da4cb-754c-4917-896e-819b101688bc.PNG)
+  
+  __Archivos creados en hue__:
+  
+  ![Captura9](https://user-images.githubusercontent.com/46933022/199136755-199fa230-7a19-4582-9f9f-64d976d9bbe6.PNG)
 
-__Creacion de archivos DHFS:__   
-  ![archivosDHFS](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-1/img/Cluster/archivosDHFS.png)   
-  En este SS, se muestra la interfaz de files (DHFS) y como se creo una carpeta llamada datasets para probar esta herramienta
 
-__Creacion de un nuevo bucket en S3:__   
-  ![s3NewBucket](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-1/img/Cluster/s3NewBucket.png)   
-  Aqui se puede mostrar como se creo un nuevo bucket en la pestaña de S3 llamada datasetssmenesesd, y en este S3 es donde se van a almacenar datos que siempre van a permanecer.
+# Ingreso a Jupyterhub
+![Captura4](https://user-images.githubusercontent.com/46933022/199136264-3c456e82-5c1d-4cdd-9ab1-f31fec6783d5.PNG)
 
-__Ingreso a JupyterHUB:__   
-  ![entramosjupyterHUB](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-1/img/Cluster/entramosjupyterHUB.png)   
-  Podemos ver que logramos entrar a jupyterHUB y estamos en el login
+__Iniciamos Spark__ 
 
-__Verificacion de Spark en jupyter:__   
-  ![verifSpark](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-1/img/Cluster/verifSpark.png)   
-  En este SS podemos verificar que en jupyter si esta bien configurado spark.
+![Captura6](https://user-images.githubusercontent.com/46933022/199136467-e90f7b7c-fae9-40bd-9c32-ecbbc02fa289.PNG)
 
-__Ingreso a zeppelin:__   
-  ![mainZeppelin](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-1/img/Cluster/mainZeppelin.png)   
-  Verificamos de que sea posible el ingreso a Zeppelin
+# Ingreso a Zeppelin
+![Captura7](https://user-images.githubusercontent.com/46933022/199136564-c22c328a-c8e3-4c61-923c-3c7692af4a59.PNG)
 
-__Verificamos el uso de spark en zeppelin:__  
-  ![zeppelinSpark](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-1/img/Cluster/zeppelinSpark.png)   
-  Se ingresan unos comandos a la linea de codigo para verificar el uso de spark en zeppelin.
+__Iniciamos Spark__
 
-__Verificacion del archivo prueba en jupyter en S3:__   
-  ![verifPruebaS3](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-1/img/Cluster/verifPruebaS3.png)   
+![Captura8](https://user-images.githubusercontent.com/46933022/199136618-ec0a3580-a036-497a-8db2-c81ca0a5df11.PNG)
 
-__Finalizamos el cluster:__   
-  ![finCluster](https://raw.githubusercontent.com/smenesesd/TopicosTelematica/main/Lab5/Lab5-1/img/Cluster/finCluster.png)   
-  Y ya por ultimo finalizamos el cluster y si es necesario volver a usarlo, lo clonamos con los mismos ajustes y eso es todo
+
+# Terminamos el cluster  
+  ![Captura10](https://user-images.githubusercontent.com/46933022/199136820-af1f81bf-dca1-4aab-b3a4-93a5af239bff.PNG)
+
