@@ -17,7 +17,10 @@ Desplegar una aplicación monolítica moodle en DCA, que cuente con un LoadBalan
 - Se configuró la base de datos
 
 ## 1.2. Que aspectos NO cumplió o desarrolló de la actividad propuesta por el profesor
-- No se pudo comprobar la correcta configuración de los NFS ni en el servidor NFS ni en los Moodles
+- No se pudo comprobar la correcta configuración de los NFS ni en el servidor NFS ni en los Moodles ya que las reglas de firewall fueron cambiadas y no tenemos acceso ssh
+
+![imagen](https://user-images.githubusercontent.com/46933022/200088591-240b5d4f-4be2-4fd1-b737-089855110637.png)
+
 - No se llego a la fase final que era desplegar los moodle para ver su resultado
 
 # 2. información general de diseño
@@ -37,143 +40,10 @@ Se utilizaron contenedores Docker para la instalación de Moodle, BD y Nginx. Ca
 
 ## Descripción y cómo se configura los parámetros del proyecto 
 
-## Configuración de la instancia del Balanceador(load balancer):
-### 1. Conectarse a la instancia por SSH:
 
-
-### 2. Instalar certbot, let's encrypt y nginx:
-Usar los siguientes comandos:
-```
-sudo apt update
-sudo apt install python3-pip
-sudo -H pip3 install certbot
-sudo apt install letsencrypt -y
-sudo apt install nginx -y
-```
-### 3. Configurar nginx.conf
-
-Entrar al archivo de configuración:
-```
-sudo vim /etc/nginx/nginx.conf
-```
-
-Borrar el contenido del archivo y reemplazarlo con lo siguiente:
-```
-worker_processes auto;
-error_log /var/log/nginx/error.log;
-pid /run/nginx.pid;
-events {
-    worker_connections  1024;  ## Default: 1024
-}
-http {
-    server {
-        listen  80 default_server;
-        server_name _;
-        location ~ /\.well-known/acme-challenge/ {
-            allow all;
-            root /var/www/letsencrypt;
-            try_files $uri = 404;
-            break;
-        }
-    }
-}
-```
-
-Guardar la configuración de nginx:
-```
-sudo mkdir -p /var/www/letsencrypt
-sudo nginx -t
-sudo service nginx reload
-```
-
-### 4. Pedir los certificados ssl
-Ejecutar el siguiente comando para certificados específicos (cambiar datos de correo y dominio de los siguiente comando):
-```
-sudo letsencrypt certonly -a webroot --webroot-path=/var/www/letsencrypt -m jciguaranf@eafit.edu.co --agree-tos -d p2.proyecto2.tk
-```
-Ejecutar el siguiente comando para wildcards:
-```
-sudo certbot --server https://acme-v02.api.letsencrypt.org/directory -d *.proyecto2.tk--manual --preferred-challenges dns-01 certonly
-```
-Al ejecutar el comando anterior hay un periodo de espera en el que se debe agregar un registro TXT en el DNS para que funcione. En este periodo de tiempo debe agregar el registro TXT en la zona creada en GCP con los datos que se le dan al ejecutar el comando(nombre de DNS y clave).
-![Captura10](https://user-images.githubusercontent.com/46933022/199867315-702b0ef7-42d4-4cff-adc6-71bbf2cbfc42.PNG)
-
-
-### 5. Configuración de archivos:
-Crear carpeta para los certificados:
-```
-mkdir -p nginx/ssl
-```
-
-Copiar los certificados a la carpeta creada anteriormente:
-```
-sudo su
-cp /etc/letsencrypt/live/p2.proyecto2.tk/* /home/ubuntu/nginx/ssl/
-cp /etc/letsencrypt/live/proyecto2.tk/* /home/ubuntu/nginx/ssl/
-```
-
-Crear el archivo de configuración options-ssl-nginx.conf:
-```
-sudo nano /etc/letsencrypt/options-ssl-nginx.conf
-```
-
-En el archivo creado anteriormente copiar lo siguiente:
-```
-# This file contains important security parameters. If you modify this file
-# manually, Certbot will be unable to automatically provide future security
-# updates. Instead, Certbot will print and log an error message with a path to
-# the up-to-date file that you will need to refer to when manually updating
-# this file.
-ssl_session_cache shared:le_nginx_SSL:10m;
-ssl_session_timeout 1440m;
-ssl_session_tickets off;
-ssl_protocols TLSv1.2 TLSv1.3;
-ssl_prefer_server_ciphers off;
-ssl_ciphers "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384";
-```
-
-Copiar el archivo options-ssl-nginx.conf:
-```
-cp /etc/letsencrypt/options-ssl-nginx.conf /home/ubuntu/nginx/ssl/
-```
-
-Acceder al directorio nginx/ssl y crear la llave ss-dhparams.pem:
-```
-cd nginx/ssl
-openssl dhparam -out ssl-dhparams.pem 512
-```
-
-Correr los siguientes comandos:
-```
-DOMAIN='p2.proyecto2.tk' bash -c 'cat /etc/letsencrypt/live/$DOMAIN/fullchain.pem /etc/letsencrypt/live/$DOMAIN/privkey.pem > /etc/letsencrypt/$DOMAIN.pem'
-cp /etc/letsencrypt/live/lab4.ml/* /home/jciguaranf/nginx/ssl/
-exit
-```
 
 ### 6. Configuración de Docker
-Instalar docker, docker-compose y git:
-```
-sudo apt install docker.io -y
-sudo apt install docker-compose -y
-sudo apt install git -y
-```
 
-Inicializar Docker:
-```
-sudo systemctl enable docker
-sudo systemctl start docker
-sudo usermod -a -G docker ubuntu
-sudo reboot
-```
-
-Clonar repositorio con la configuración de Docker y copiar archivos:
-```
-git clone https://github.com/st0263eafit/st0263-2022-2.git
-cd st0263-2022-2/docker-nginx-wordpress-ssl-letsencrypt
-sudo cp docker-compose.yml /home/ubuntu/nginx
-sudo cp nginx.conf /home/ubuntu/nginx
-sudo cp ssl.conf /home/ubuntu/nginx
-```
 
 Detener nginx:
 ```
@@ -194,8 +64,8 @@ events {
 }
 http {
   upstream loadbalancer{
-    server 172.31.80.12:80 weight=5;
-    server 172.31.92.93:80 weight=5;
+    server 192.168.10.190:80 weight=5;
+    server 192.168.10.227:80 weight=5;
   }
   server {
     listen 80;
@@ -224,7 +94,10 @@ http {
     }
   }
 }
+
 ```
+
+![imagen](https://user-images.githubusercontent.com/46933022/200087671-8e92f917-f3c1-48b1-9c4a-915974a47b8a.png)
 
 Ingresar al archivo docker-compose.yml, borrar su contenido y reemplazarlo con lo siguiente:
 ```
@@ -235,17 +108,21 @@ services:
     image: nginx
     volumes:
     - ./nginx.conf:/etc/nginx/nginx.conf:ro
-    - ./ssl:/etc/nginx/ssl
-    - ./ssl.conf:/etc/nginx/ssl.conf
     ports:
     - 80:80
-    - 443:443
 ```
+
+![imagen](https://user-images.githubusercontent.com/46933022/200087888-f6576133-9a84-4bcf-989a-f74792965fd7.png)
+
 
 Inicializar Docker:
 ```
 docker-compose up --build -d
 ```
+
+![imagen](https://user-images.githubusercontent.com/46933022/200088256-543eaefa-f98d-4579-99de-abb2df2a8e36.png)
+![imagen](https://user-images.githubusercontent.com/46933022/200088316-cc6de196-2376-4471-ac95-15554786c4e1.png)
+
 
 ## Configuración de la instancia del servidor NFS:
 ### 1. Instalar el NFS server:
@@ -396,7 +273,7 @@ sudo systemctl disable nginx
 sudo systemctl stop nginx
 ```
 
-
+![Captura1](https://user-images.githubusercontent.com/46933022/200086800-d42371ec-649c-40d9-b4fd-91ab6af7272c.PNG)
 
 
 Crear un directorio para el contenedor de Docker:
@@ -432,6 +309,7 @@ volumes:
     driver: local
 ```
 
+![imagen](https://user-images.githubusercontent.com/46933022/200086897-f5ad0689-fbcc-4b65-9427-8dfbc6caf0aa.png)
 
 
 Correr el contenedor de moodle:
@@ -440,11 +318,9 @@ sudo docker-compose up --build -d
 ```
 
 ## Finalmente
-Ingresar a su dominio https://p2.proyecto2.tk
+Ingresar a su dominio https://proyecto21.dis.eafit.edu.co/
 
-![Captura8](https://user-images.githubusercontent.com/46933022/199868890-80eafa9a-cc92-4562-96c6-267f4a93eba9.PNG)
-
-![Captura9](https://user-images.githubusercontent.com/46933022/199868933-41db3eb5-5e2a-46cb-a443-b3368d50a548.PNG)
+![imagen](https://user-images.githubusercontent.com/46933022/200088505-0c0cdcc8-feb3-46ea-9164-7af54e573a26.png)
 
 
 
