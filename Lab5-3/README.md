@@ -1,5 +1,7 @@
 # Laboratorio 5-3
 
+## Estudiante: Juan Camilo Iguaran - correo: jciguaranf@eafit.edu.co
+
 En el laboratorio 5-3 se utilizara la librería de MRJob python para poder ejecutar el framework de MapReduce, para instalar la librería se debe ejecutar el código de:
 
 ```bash
