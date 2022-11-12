@@ -41,7 +41,7 @@ Se utilizó una instancia e2.micro agregandole un EFS creado anteriormente. Se u
 - Template: Plantilla de AWS para grupo de Auto Scalling
 
 ## Descripción y cómo se configura los parámetros del proyecto 
-### Parte 1
+## Parte 1
 __Paso 1__. Crear cuatro grupo de seguridad. uno para el Balanceador, otro para el moodle, otro para la base de datos y otro para el efs
 
   - El grupo de seguridad del balannceador se le habilitarán las reglas de entrada http y https
@@ -139,3 +139,167 @@ __Paso 4__. Crear la instancia de moodle
 ![Captura7](https://user-images.githubusercontent.com/46933022/201485677-77fff83b-91cd-45e6-b617-1d88e31eb897.PNG)
 
 - Click en Lanzar Instancia
+
+![imagen](https://user-images.githubusercontent.com/46933022/201494922-5adb43b9-05c2-428c-9713-9a921a192e96.png)
+
+
+- Una vez creada la instancia, entrar por ssh a ella
+- Instalar docker y docker-compose
+```
+sudo apt install docker.io -y
+sudo apt install docker-compose -y
+sudo apt install git -y
+```
+
+- Inicializar Docker:
+```
+sudo systemctl enable docker
+sudo systemctl start docker
+sudo usermod -a -G docker ubuntu
+sudo reboot
+```
+
+- Poner los siguientes comandos
+```
+mkdir moodle
+sudo nano docker-compose.yml
+```
+- Pegar el siguiente contenido
+```
+version: '2'
+services:
+  moodle:
+    image: docker.io/bitnami/moodle:4
+    ports:
+      - '80:8080'
+    environment:
+      - MOODLE_DATABASE_HOST=moodlereds1.c2nu2sypx880.us-east-1.rds.amazonaws.com
+      - MOODLE_DATABASE_PORT_NUMBER=3306
+      - MOODLE_DATABASE_USER=moodleuser
+      - MOODLE_DATABASE_NAME=bitnami_moodle
+      - MOODLE_DATABASE_PASSWORD=moodlepassword
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+    volumes:
+      - '/mnt/moodle/moodle_data:/bitnami/moodle'
+      - '/mnt/moodle/moodledata_data:/bitnami/moodledata'
+```      
+
+- Probar que se conecto el EFS
+``` 
+mount
+``` 
+
+![Captura9](https://user-images.githubusercontent.com/46933022/201495191-7d969001-bc0a-4dff-8f0e-c7607c352692.PNG)
+
+- Ingresar siguiente comando para borrar contenido de EFS
+``` 
+sudo rm -rf /mnt/moodle/*
+``` 
+
+- Probar conexión con base de datos(ingresar url que da la base de datos rds)
+``` 
+mysql -u moodleuser -h moodlereds1.c2nu2sypx880.us-east-1.rds.amazonaws.com -p
+``` 
+
+![Captura10](https://user-images.githubusercontent.com/46933022/201495316-c9cbd138-b8ac-49b9-bdce-a7fd6d6a476d.PNG)
+
+- Crear base de datos
+``` 
+CREATE database bitnami_moodle;
+``` 
+
+![Captura11](https://user-images.githubusercontent.com/46933022/201495405-9062404e-611a-4e5b-9396-1e30f2b7a731.PNG)
+
+``` 
+cd moodle
+docker-compose up
+``` 
+
+![imagen](https://user-images.githubusercontent.com/46933022/201495513-1fe82266-65ba-48a6-ad8a-49c446228f8a.png)
+
+- Copiar y pegar ip pública en el browser. El resultado debería ser el siguiente
+
+![imagen](https://user-images.githubusercontent.com/46933022/201495544-f2e5d708-c09d-4482-bf42-848b21ac93dc.png)
+
+
+## Parte 2
+
+### Crear una AMI para para el Servicio de Auto Scaling.
+A continuación, vamos a crear una AMI del servidor web que contiene el moodle. De esta forma se guardarán el contenido del boot disk y las nuevas instancias desplegadas a partir de esta se van a instanciar con un contenido idéntico. Es así como una Amazon Machine Image se convierte en una plantilla que contiene una configuración básica la cual sirve para instanciar posteriormente máquinas.
+
+- Para crear una AMI, en el home seleccione el servicio de EC2
+- Seleccione la instancia del moodle creada anteriormente en la parte 1
+- Click en Actions
+- Click en Imagen y Plantillas
+- Click en Crear Imagen
+- Configurar los siguientes parámetros
+  - Image name: Web Moodle  AMI
+  - Image description: AMI for Web Server
+  - Click en Create Image
+  
+  ![Captura14](https://user-images.githubusercontent.com/46933022/201496162-15aadb4a-086f-43d8-ab11-53f4d3a9b84f.PNG)
+  
+  ![imagen](https://user-images.githubusercontent.com/46933022/201496130-998b8e5e-c62a-41a2-bfed-974d88bdec88.png)
+
+
+### Crear un Target Group
+Ir al menú de EC2, en la sección de Balanceadores de Carga, escoga Grupos de destino. Seleccione la opción de “Crear grupos de destino”
+- Poner las siguientes configuraciones
+  - Choose  a target type: Instances
+  - Target group name: TG-MyWebApp
+  - Protocol: HTTP:80
+  - VPC: VPC-default
+  - Protocol version: HTTP1
+  - Click en Siguiente
+  - Click en ‘create target group’
+  
+![Captura15](https://user-images.githubusercontent.com/46933022/201496551-bdd4b6d5-a4bd-4436-b46a-4ff4f2bd328f.PNG)
+
+### Crear y configurar un balanceador de carga.
+- En la barra de búsqueda seleccionar EC2
+- En el panel izquierdo, click en Load Balancers
+- Click en Create Load Balancer
+- Click en Create en la sección de Application Load Balancer
+- Sección de configuración básica:
+  - Name: ELB-MyWebApp
+  - Scheme: Seleccione internet-facing.
+  - IP address type: ipv4
+  - VPC: VPC-default.
+  
+  ![imagen](https://user-images.githubusercontent.com/46933022/201496851-4f44fcac-8cef-4f6b-b691-b20cc7aa4c31.png)
+  
+  ![Captura17](https://user-images.githubusercontent.com/46933022/201496864-373d783f-1854-43b8-beef-959751aca229.PNG)
+
+
+- Sección de Listeners:
+  - Load Balancer Protocol: http
+  - Load Balancer Port: 80.
+  - Default action: seleccione el Target Group Creado: TG-MyWebApp
+  - Click en add listener para crear el litener para HTTPS
+    - Load Balancer Protocol: https
+    - Load Balancer Port: 443
+    - Click en Create Target Group y crear un grupo de seguridad, así como el creado anteriormente y asociarlo a este listener
+  
+  ![imagen](https://user-images.githubusercontent.com/46933022/201497097-4d30eb48-a904-4619-9b60-e6699f9cb7a2.png)
+
+- Sección de Network mapping:
+  - VPC: VPC-default
+  - Mappings: Seleccione la casilla de cada zona de disponibilidad.  Y seleccione la subred pública para ambas zonas. Recuerde que el balanceador de carga va     desplegado en la subred pública.
+  
+  ![imagen](https://user-images.githubusercontent.com/46933022/201497229-3cd83b53-c4bf-4e52-8b54-0ac8e8fd4bf0.png)
+  
+- Sección de Security Group
+  - Seleccione la opción de escoger un security group existente.
+  - Escoga el grupo de seguridad web y del balanceador, creados anteriormente
+  
+  ![imagen](https://user-images.githubusercontent.com/46933022/201497328-d8992db9-e84b-4709-addc-65c94fce93b0.png)
+  
+- Adicionarle el Listener en HTTPS con certificado SSL en Letsencrypt
+  - Importar los datos con ACM
+  - Certificate private key: Contenido del privkey.pem del certificado SSL que se encuentra en la carpeta ssl que se creó cuando se pidió el certificado
+  - Certificate body: Contenido del cert.pem del certificado SSL que se encuentra en la carpeta ssl que se creó cuando se pidió el certificado
+  - Certificate chain: Contenido del chain.pem del certificado SSL que se encuentra en la carpeta ssl que se creó cuando se pidió el certificado
+  
+  ![imagen](https://user-images.githubusercontent.com/46933022/201497590-45f85d53-7877-41e0-82a7-a2ee0f1e10c3.png)
+
+- Click en Create Load Balancer  
