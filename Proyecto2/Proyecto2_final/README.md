@@ -303,3 +303,86 @@ Ir al menú de EC2, en la sección de Balanceadores de Carga, escoga Grupos de d
   ![imagen](https://user-images.githubusercontent.com/46933022/201497590-45f85d53-7877-41e0-82a7-a2ee0f1e10c3.png)
 
 - Click en Create Load Balancer  
+
+### Crear y configurar un Launch Template & Grupo de Auto Scaling.
+#### Launch Template:
+- En la barra de búsqueda selecciona EC2
+- En el panel izquierdo, seleccione Launch Template, en la Sección Instancias
+- Click en Create launch template
+- Launch configuration name: MyWebApp
+- Template version description: Template for web moodle.
+- Orientación sobre Auto Scaling: Activar Casila
+- Sección Contenido de la plantilla de lanzamiento:
+  - Imágenes de aplicaciones y sistemas operativos (Amazon Machine Image): En Mis AMI, click en De mi Propiedad, aparecerá Web Moodle AMI
+- Tipo de instancia: t2.micro
+- Par de claves (inicio de sesión): Vockey
+- Click en “Crear plantilla de lanzamiento”
+
+![Captura25](https://user-images.githubusercontent.com/46933022/201531711-1de23322-fa5f-40ff-85a5-bd0fa06891ee.PNG)
+
+![imagen](https://user-images.githubusercontent.com/46933022/201531736-64acc023-8c0d-46b7-963a-5bfb8170189b.png)
+
+####Grupo de Autoscaling:
+- Seleccione la plantilla de lanzamiento creada
+- Click en el menú Actions. Click en Create auto scaling group.
+- Name: MyWebApp-Auto Scaling Group
+- Plantilla de lanzamiento: MyWebApp
+- Click en Next
+- Sección de Red
+  - Network: VPC-default.
+  - Subnet: Seleccione las subredes públicas ubicadas en las zonas de disponibilidad.
+  - Click en Next.
+
+![imagen](https://user-images.githubusercontent.com/46933022/201533709-a0e49a00-b840-4f47-9d26-6cccbb4fec97.png)
+
+- Sección de Configuraciones avanzadas
+  - Seleccione la casilla para: Asociar a un balanceador de carga existente.
+  - Escoga: Elegir entre los grupos de destino del balanceador de cargas
+  - Escoja los targets groups que se creó para la aplicación. TG-MyWebApp y TG-MyWebApps.
+  - Marque la casilla: Habilitar la recopilación de métricas de grupo en CloudWatch
+  - Click en Next
+  
+  ![imagen](https://user-images.githubusercontent.com/46933022/201533973-5763ef09-b788-4d89-a7d4-97b87beb4078.png)
+  
+- Sección de Configurar políticas de escalado y tamaño de grupo
+  - Caaicdad deseada: 2
+  - Capacidad mínima: 2
+  - Capacidad máxima: 3 
+  - Políticas de escalado:
+    - Seleccione Política de escalado de seguimiento de destino
+    - Scaling policy name: MyWebApp-ScalingPolicy
+    - Tipo de métrica: Utilización promedio de la CPU
+    - Target Value: 60
+    
+    ![imagen](https://user-images.githubusercontent.com/46933022/201534949-5a006beb-d681-494d-b945-cd891e255531.png)
+
+  - Click en “next”
+
+- Click en Next. Add notifications.
+- Sección Añadir Etiquetas
+  - Click en “Add tag”
+  - Key: Name
+  - Value: WebServer
+  - Click Next
+  
+  ![imagen](https://user-images.githubusercontent.com/46933022/201535139-46f68884-af84-4faf-8868-bd4085ac3d89.png)
+
+- Click en Create Auto Scaling Group.
+
+![Captura26](https://user-images.githubusercontent.com/46933022/201535201-d6202b96-4e89-4049-a018-2744b0837641.PNG)
+
+### Verifique el Funcionamiento del Balanceador de Carga.
+- En el panel de navegación izquierdo:
+  - Click en Load Balancers.
+  - En el panel inferior, copie el DNS name del balanceador de carga.
+  - En una nueva ventana de browser, pegue la url copiada y presione enter.
+  - Usted deberá ver la página de bienvenida del servidor web de moodle.
+  - Copie y pegue tambien el dominio: https://p2.proyecto2.tk
+  ![Captura29](https://user-images.githubusercontent.com/46933022/201535417-91d8a0b7-3975-4a97-b70a-c45cbe1dc36f.PNG)
+  
+  ![imagen](https://user-images.githubusercontent.com/46933022/201535675-5dd3fa23-62aa-441d-9e18-3bd0e8915a37.png)
+
+
+# 4. Referencias
+https://docs.google.com/document/d/1jtZBV9h_guHMZzr6ZLSDtEDUB04xUVDT/edit#
+
