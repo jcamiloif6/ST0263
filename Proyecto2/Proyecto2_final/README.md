@@ -28,6 +28,7 @@ Se utilizó una instancia e2.micro agregandole un EFS creado anteriormente. Se u
 
 ## Dirección IP y nombre de dominio
 - Dominio con certificado SSL: https://p2.proyecto2.tk
+- Dominio con balanceador de AWS:  www.proyecto2.tk
 - ELB-MyWebApp-2023056246.us-east-1.elb.amazonaws.com
 
 ## Detalles técnicos
@@ -377,7 +378,7 @@ Ir al menú de EC2, en la sección de Balanceadores de Carga, escoga Grupos de d
   - En el panel inferior, copie el DNS name del balanceador de carga.
   - En una nueva ventana de browser, pegue la url copiada y presione enter.
   - Usted deberá ver la página de bienvenida del servidor web de moodle.
-  - Copie y pegue tambien el dominio: https://p2.proyecto2.tk
+  - Copie y pegue tambien el dominio: https://p2.proyecto2.tk y www.proyecto2.tk
   ![Captura29](https://user-images.githubusercontent.com/46933022/201535417-91d8a0b7-3975-4a97-b70a-c45cbe1dc36f.PNG)
   
   ![imagen](https://user-images.githubusercontent.com/46933022/201536850-4f2197f2-47df-46cb-a842-d7bf6d14c031.png)
