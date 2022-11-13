@@ -381,6 +381,9 @@ Ir al menú de EC2, en la sección de Balanceadores de Carga, escoga Grupos de d
   - Copie y pegue tambien el dominio: https://p2.proyecto2.tk y www.proyecto2.tk
   ![Captura29](https://user-images.githubusercontent.com/46933022/201535417-91d8a0b7-3975-4a97-b70a-c45cbe1dc36f.PNG)
   
+  ![imagen](https://user-images.githubusercontent.com/46933022/201538038-ccaa0d3d-b924-4256-a1c5-1632d67d52c0.png)
+
+  
   ![imagen](https://user-images.githubusercontent.com/46933022/201536850-4f2197f2-47df-46cb-a842-d7bf6d14c031.png)
 
 
