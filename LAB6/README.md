@@ -59,5 +59,25 @@
 
 En el notebook de jupyter digitar los siguientes comandos
 
+![Captura8](https://user-images.githubusercontent.com/46933022/202080919-ee90d162-af0b-4eb1-8a06-15c7031382e2.PNG)
+![Captura9](https://user-images.githubusercontent.com/46933022/202080927-2bafd324-ee6d-4131-a4cf-17365105b28a.PNG)
+![Captura10](https://user-images.githubusercontent.com/46933022/202080964-f2572aa3-6bb3-44b5-af06-ba58bb6a8ad8.PNG)
+![Captura11](https://user-images.githubusercontent.com/46933022/202080969-01a97579-ae10-4b91-9fe6-534677401db0.PNG)
+![Captura12](https://user-images.githubusercontent.com/46933022/202081023-798d3ac6-df22-427e-a4f7-5e7d08ac976d.PNG)
+![Captura13](https://user-images.githubusercontent.com/46933022/202081034-e34f22cb-494a-4dc0-8b6c-1c54e4fb7ee4.PNG)
+![Captura14](https://user-images.githubusercontent.com/46933022/202081041-6e08c7ad-2464-43af-8864-e982ce399b06.PNG)
+![Captura15](https://user-images.githubusercontent.com/46933022/202081047-18625cf4-41f4-40f3-b93d-677306df8695.PNG)
+![Captura16](https://user-images.githubusercontent.com/46933022/202081053-67cd2b75-91b5-4e17-a365-6cb2b1e64e53.PNG)
+![Captura17](https://user-images.githubusercontent.com/46933022/202081059-faef1352-d479-4463-8f49-5aae44ed9840.PNG)
+![Captura18](https://user-images.githubusercontent.com/46933022/202081069-2e07162b-3df4-4f5b-a4c1-e062ddf195f7.PNG)
+![Captura19](https://user-images.githubusercontent.com/46933022/202081079-ec9e580f-378c-40d3-8833-49395980e4aa.PNG)
+![Captura20](https://user-images.githubusercontent.com/46933022/202081085-97fd914e-ffc8-4665-a4ca-4fbca0e231b8.PNG)
+![Captura21](https://user-images.githubusercontent.com/46933022/202081091-edc8f2bf-9a15-483a-ae82-5092580e7b9a.PNG)
+![Captura22](https://user-images.githubusercontent.com/46933022/202081098-2fb9903d-9e5f-427a-9e8d-c3e9ec60602a.PNG)
+![Captura23](https://user-images.githubusercontent.com/46933022/202081104-6527cc97-0409-4703-a5b3-61618dc66873.PNG)
+![Captura24](https://user-images.githubusercontent.com/46933022/202081108-97ec97b0-5c66-4359-9f87-60b82302b5b7.PNG)
+![Captura25](https://user-images.githubusercontent.com/46933022/202081114-3d847b45-bf2e-46f2-8b0a-b4982b500b69.PNG)
+
+
 
 
