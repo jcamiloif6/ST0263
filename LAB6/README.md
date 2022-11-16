@@ -78,6 +78,43 @@ En el notebook de jupyter digitar los siguientes comandos
 ![Captura24](https://user-images.githubusercontent.com/46933022/202081108-97ec97b0-5c66-4359-9f87-60b82302b5b7.PNG)
 ![Captura25](https://user-images.githubusercontent.com/46933022/202081114-3d847b45-bf2e-46f2-8b0a-b4982b500b69.PNG)
 
+Archivo con los comandos realizados: https://github.com/jcamiloif6/ST0263/blob/main/LAB6/prueba.ipynb
 
 
+## HIVE y SparkSQL, GESTIÓN DE DATOS VIA SQL
+
+- Ingresar a Hue mediante el link que da el cluster
+- Crear la tabla HDI en EMR/S3/Hue/Hive:
+
+  ![imagen](https://user-images.githubusercontent.com/46933022/202083078-991ba814-f1cb-4556-a78c-42f3752cc2f1.png)
+  
+- Hacer consultas y cálculos sobre la tabla HDI:
+  
+  ![imagen](https://user-images.githubusercontent.com/46933022/202083417-089b0cea-9fea-4e0e-9b5b-dcfc788b0122.png)
+
+  ![imagen](https://user-images.githubusercontent.com/46933022/202083609-cc369b9a-eb21-476c-820d-5bf43d3d0ef7.png)
+
+  - Crear Tabla Expo
+
+    ![imagen](https://user-images.githubusercontent.com/46933022/202084136-d3bae48d-67bd-4d23-80e5-0a9b0a973477.png)
+
+  - EJECUTAR EL JOIN DE 2 TABLAS:
+
+    ![imagen](https://user-images.githubusercontent.com/46933022/202084392-aea5de68-4b79-44ce-94dc-097b96e0c2fe.png)
+
+- WORDCOUNT EN HIVE:
+
+  - Crear tabla:
+  
+    ![imagen](https://user-images.githubusercontent.com/46933022/202084858-1379b1ac-d75f-4cd9-b84a-d8faa5943dc5.png)
+    
+  - Ordenado por palabra
+    
+    ![imagen](https://user-images.githubusercontent.com/46933022/202085059-c841f2e6-4415-4dd7-9fbf-efb818be42bb.png)
+    
+  - Ordenado por frecuencia de menor a mayor
+
+  ![imagen](https://user-images.githubusercontent.com/46933022/202085475-9beb5186-e510-4c97-9254-e43846a897bd.png)
+
+  ![imagen](https://user-images.githubusercontent.com/46933022/202085598-fcdadc07-829e-4e65-a984-7aa250e17400.png)
 
