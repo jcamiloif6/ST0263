@@ -93,3 +93,17 @@ En un archivo ipyin poner las siguientes instrucciones
 ## 3.5 Realice la pregunda de negocio que quiera sobre los datos y respondala con la correspondiente programación en spark.
 
 ![Captura22](https://user-images.githubusercontent.com/46933022/203358860-92ec3f2f-a6ff-4ff8-b622-2dce786e7123.PNG)
+
+## 4. salve los datos del numeral 3, en el bucket público de cada estudiante
+
+![imagen](https://user-images.githubusercontent.com/46933022/203377231-fdd0ac3f-f529-4d2f-8390-e57f80e93831.png)
+
+
+## Bucket Público
+s3://datasetsjciguaran/covid19/ https://datasetsjciguaran.s3.amazonaws.com/covid19/
+
+
+
+## Referencias
+- https://github.com/st0263eafit/st0263-2022-2/blob/main/bigdata/trabajo3-pyspark.txt
+
