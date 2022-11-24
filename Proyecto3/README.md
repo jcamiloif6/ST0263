@@ -76,9 +76,13 @@ En un archivo ipyin poner las siguientes instrucciones
 
 ![Captura17](https://user-images.githubusercontent.com/46933022/203358211-9c121a49-d610-4a99-b7d4-04b6324406d4.PNG)
 
+![Captura23](https://user-images.githubusercontent.com/46933022/203869594-9261441f-fad8-47ba-bb6e-ac465f19ffeb.PNG)
+
 ## 3.2 Las 10 ciudades con más casos de covid en Colombia ordenados de mayor a menor.
 
 ![Captura18](https://user-images.githubusercontent.com/46933022/203358379-06841031-ec22-40d8-8c20-f6b6f17b3b58.PNG)
+
+![Captura24](https://user-images.githubusercontent.com/46933022/203869616-1cf64de0-b4d8-478b-af38-6abb7c1efa0b.PNG)
 
 ## 3.3 Los 10 días con más casos de covid en Colombia ordenados de mayor a menor.
 
@@ -86,13 +90,19 @@ En un archivo ipyin poner las siguientes instrucciones
 
 ![Captura20](https://user-images.githubusercontent.com/46933022/203358538-671840f0-3b20-49c0-ac8c-7de9971a07c0.PNG)
 
+![Captura25](https://user-images.githubusercontent.com/46933022/203869649-8a2823cd-99f4-416d-aa7b-6d0a877c51eb.PNG)
+
 ## 3.4 Distribución de casos por edades de covid en Colombia.
 
 ![Captura21](https://user-images.githubusercontent.com/46933022/203358679-c11bd445-44a4-4f79-9a45-7d6e9c00a736.PNG)
 
+![Captura26](https://user-images.githubusercontent.com/46933022/203869684-bf59daad-9c54-4f1c-a5dd-08c7a3ffbe1c.PNG)
+
 ## 3.5 Realice la pregunda de negocio que quiera sobre los datos y respondala con la correspondiente programación en spark.
 
 ![Captura22](https://user-images.githubusercontent.com/46933022/203358860-92ec3f2f-a6ff-4ff8-b622-2dce786e7123.PNG)
+
+![Captura27](https://user-images.githubusercontent.com/46933022/203869714-12a026d7-827c-4dd5-858c-d9cb2186dac0.PNG)
 
 ## 4. salve los datos del numeral 3, en el bucket público de cada estudiante
 
